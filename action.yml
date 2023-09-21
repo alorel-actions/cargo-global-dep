@@ -4,6 +4,8 @@ inputs:
   name:
     required: true
     description: Package name
+  binary-name:
+    description: Binary name if different from package name
   version:
     description: Version to install. Defaults to latest
   release:

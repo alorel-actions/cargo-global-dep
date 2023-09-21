@@ -3,11 +3,12 @@ const {spawnSync} = require('node:child_process');
 
 try {
   const name = getInput('name', {required: true});
+  const binaryName = getInput('binary-name') || name;
   const version = getInput('version');
   const release = getBooleanInput('release');
   const forceVersion = getBooleanInput('force-version');
 
-  const alreadyInstalled = getInstalledVersion(name);
+  const alreadyInstalled = getInstalledVersion(name, binaryName);
 
   if (alreadyInstalled && (!forceVersion || (version && alreadyInstalled === version))) {
     info(`Already installed ${name}@${alreadyInstalled}`);
@@ -42,14 +43,14 @@ try {
   setFailed(e);
 }
 
-function getInstalledVersion(pkg) {
+function getInstalledVersion(pkg, binaryName) {
   let app;
   const args = ['--version'];
   if (pkg.match(/^cargo-[\w-_]+$/)) {
     app = 'cargo';
     args.unshift(pkg.slice('cargo-'.length));
   } else {
-    app = pkg;
+    app = binaryName;
   }
 
   const res = spawnSync(app, args, {
