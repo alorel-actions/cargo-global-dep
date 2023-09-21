@@ -1,0 +1,17 @@
+name: Cargo global dependency
+description: Install a global cargo dependency with `cargo install`
+inputs:
+  name:
+    required: true
+    description: Package name
+  version:
+    description: Version to install. Defaults to latest
+  release:
+    description: Install release version instead of debug
+    default: 'false'
+  force-version:
+    description: Force the given version if a different version is installed
+    default: 'false'
+runs:
+  using: node20
+  main: index.js
