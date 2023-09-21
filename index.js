@@ -5,10 +5,11 @@ try {
   const name = getInput('name', {required: true});
   const version = getInput('version');
   const release = getBooleanInput('release');
+  const forceVersion = getBooleanInput('force-version');
 
   const alreadyInstalled = getInstalledVersion(name);
 
-  if (version && alreadyInstalled && alreadyInstalled === version) {
+  if (alreadyInstalled && (!forceVersion || (version && alreadyInstalled === version))) {
     info(`Already installed ${name}@${alreadyInstalled}`);
     return;
   }
