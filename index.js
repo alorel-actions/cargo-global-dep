@@ -56,7 +56,7 @@ function getInstalledVersion(pkg, binaryName) {
   const res = spawnSync(app, args, {
     encoding: 'utf8',
     env: process.env,
-    stdio: ['ignore', 'pipe', 'inherit'],
+    stdio: ['ignore', 'pipe', 'ignore'],
   });
 
   if (res.status !== 0) {

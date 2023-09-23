@@ -30,6 +30,7 @@ jobs:
             fix: Bug Fixes
             deps: Dependency updates
             perf: Performance
+            ux: UX
           trivial-types: |
             chore: Maintenance
             ci: CI & Build

@@ -13,5 +13,6 @@ types:
   - deps
   - deps-dev
   - perf
+  - ux
 scopes:
   - dev
