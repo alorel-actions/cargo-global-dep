@@ -1,4 +1,4 @@
-const {getInput, getBooleanInput, setFailed, info, notice} = require('@actions/core');
+const {getInput, getBooleanInput, setFailed, info, notice, getMultilineInput} = require('@actions/core');
 const {spawnSync} = require('node:child_process');
 
 try {
@@ -7,6 +7,7 @@ try {
   const version = getInput('version');
   const release = getBooleanInput('release');
   const forceVersion = getBooleanInput('force-version');
+  const flags = getMultilineInput('flags');
 
   const alreadyInstalled = getInstalledVersion(name, binaryName);
 
@@ -15,7 +16,7 @@ try {
     return;
   }
 
-  const args = ['install', name];
+  const args = ['install', name, ...flags];
   if (version) {
     args.push('--version', version);
   }
